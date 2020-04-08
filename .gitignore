@@ -1,0 +1,6 @@
+.*
+/*
+!/boost
+!/.gitignore
+!/create.cmake
+!/readme.md

@@ -1,0 +1,30 @@
+The package boost provides CMake targets:
+
+    find_package(Boost 1.72.0 CONFIG REQUIRED COMPONENTS <component> [...])
+    target_link_libraries(main PRIVATE Boost::<component> [...])
+
+    # atomic                   : Boost::atomic
+    # chrono                   : Boost::chrono
+    # container                : Boost::container
+    # context                  : Boost::context
+    # contract                 : Boost::contract
+    # coroutine                : Boost::coroutine
+    # date_time                : Boost::date_time
+    # exception                : Boost::exception
+    # fiber                    : Boost::fiber
+    # filesystem               : Boost::filesystem
+    # graph                    : Boost::graph
+    # headers                  : Boost::headers
+    # iostreams                : Boost::iostreams
+    # locale                   : Boost::locale
+    # math                     : Boost::math
+    # program_options          : Boost::program_options
+    # random                   : Boost::random
+    # regex                    : Boost::regex
+    # serialization            : Boost::serialization
+    # stacktrace               : Boost::stacktrace
+    # system                   : Boost::system
+    # test                     : Boost::test
+    # thread                   : Boost::thread
+    # timer                    : Boost::timer
+    # type_erasure             : Boost::type_erasure
