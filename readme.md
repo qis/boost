@@ -43,10 +43,16 @@ Generate empty ports for all boost components.
 cmake -DVCPKG_ROOT=C:/Workspace/vcpkg -P C:/Workspace/ports/create.cmake
 ```
 
-Install boost using the ports overlay.
+Install boost using the ports overlay in `cmd.exe`.
 
 ```cmd
 vcpkg install --overlay-ports=C:/Workspace/ports boost
+```
+
+Install boost using the ports overlay in `wsl.exe`.
+
+```cmd
+vcpkg install --overlay-ports=/opt/ports boost
 ```
 
 [boost]: https://www.boost.org/
