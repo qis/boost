@@ -14,12 +14,6 @@ if(NOT VCPKG_ROOT)
   endif()
 endif()
 
-# Delete current ports.
-file(GLOB BOOST_CURRENT_PORTS ${CMAKE_CURRENT_LIST_DIR}/boost-*)
-if(BOOST_CURRENT_PORTS)
-  file(REMOVE_RECURSE ${BOOST_CURRENT_PORTS})
-endif()
-
 # Create ports for all boost subprojects.
 set(BOOST_BUILD_DEPENDS "")
 file(GLOB BOOST_PORTS ${VCPKG_ROOT}/ports/boost-*)
@@ -27,6 +21,7 @@ foreach(PORT_SRC ${BOOST_PORTS})
   get_filename_component(PORT ${PORT_SRC} NAME)
   string(REGEX REPLACE "^boost-" "" NAME ${PORT})
   string(REPLACE "-" " " NAME ${NAME})
+  file(REMOVE_RECURSE ${CMAKE_CURRENT_LIST_DIR}/${PORT})
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/${PORT})
   file(WRITE  ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Source: ${PORT}\n")
   file(APPEND ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Version: ${BOOST_VERSION}\n")
