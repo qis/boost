@@ -27,13 +27,25 @@ Disadvantages over the default vcpkg boost port are (patches welcome):
 - [boost/CMakeLists.txt](boost/CMakeLists.txt) configures boost and builds all supported components.
 - [boost/portfile.cmake](boost/portfile.cmake) installs boost and patches generated CMake configuration files.
 
+## Requirements
+Install [vcpkg](https://github.com/microsoft/vcpkg) following the official documentation.
+
 ## Usage
-Install [vcpkg](https://github.com/microsoft/vcpkg).
+Clone this repository.
 
 ```cmd
-cd C:\Workspace
-git clone git@github.com:qis/boost ports
-cmake -P ports/create.cmake
+git clone git@github.com:qis/boost C:/Workspace/ports
+```
+
+Generate empty ports for all boost components.
+
+```cmd
+cmake -DVCPKG_ROOT=C:/Workspace/vcpkg -P C:/Workspace/ports/create.cmake
+```
+
+Install boost using the ports overlay.
+
+```cmd
 vcpkg install --overlay-ports=C:/Workspace/ports boost
 ```
 
