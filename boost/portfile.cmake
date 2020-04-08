@@ -1,9 +1,12 @@
-set(BOOST_VERSION 1.72.0)
+# Parse boost version.
+file(READ ${CMAKE_CURRENT_LIST_DIR}/CONTROL CONTROL)
+string(REGEX MATCH "Version: ([0-9\.]+)" _ ${CONTROL})
+set(BOOST_VERSION ${CMAKE_MATCH_1})
 
 string(REPLACE "." "_" BOOST_VERSION_NAME ${BOOST_VERSION})
 
 vcpkg_download_distfile(ARCHIVE
-  URLS "https://dl.bintray.com/boostorg/release/1.72.0/source/boost_${BOOST_VERSION_NAME}.7z"
+  URLS "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.7z"
   FILENAME "boost_${BOOST_VERSION_NAME}.7z"
   SHA512 96ce928d490a84d76ef54b0f90780d23eeff4b1d79d7a00e4bee51e791b0f8e65eecc5578c86f49c2f791fb670826c114304d40ce097537431bf23ba587c2cae
 )
@@ -44,11 +47,11 @@ else()
 endif()
 
 if(NOT EXISTS ${B2})
-  message(STATUS "Building b2")
-  execute_process(COMMAND ${BOOTSTRAP}
-    OUTPUT_FILE ${CURRENT_BUILDTREES_DIR}/build-${TARGET_TRIPLET}-rel-b2-out.log
-    ERROR_FILE ${CURRENT_BUILDTREES_DIR}/build-${TARGET_TRIPLET}-rel-b2-err.log
-    WORKING_DIRECTORY ${SOURCE_PATH})
+  message(STATUS "Building b2...")
+  vcpkg_execute_required_process(
+    COMMAND ${BOOTSTRAP}
+    WORKING_DIRECTORY ${SOURCE_PATH}
+    LOGNAME b2)
 endif()
 
 vcpkg_configure_cmake(
@@ -137,4 +140,4 @@ endif()
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/share)
 
-file(INSTALL ${CMAKE_CURRENT_LIST_DIR}/usage DESTINATION ${CURRENT_PACKAGES_DIR}/share/boost)
+configure_file(${CMAKE_CURRENT_LIST_DIR}/usage.in ${CURRENT_PACKAGES_DIR}/share/boost/usage LF)
