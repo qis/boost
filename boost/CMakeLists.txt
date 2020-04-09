@@ -26,7 +26,7 @@ function(append name value)
 endfunction()
 
 if(WIN32 AND DEFINED CMAKE_LINKER)
-  append("<linker>" "${CMAKE_LINKER}")
+  append("<linker>" "\"${CMAKE_LINKER}\"")
   file(APPEND ${config} "\n")
 endif()
 
