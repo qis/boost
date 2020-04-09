@@ -38,6 +38,11 @@ endif()
 
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt DESTINATION ${SOURCE_PATH})
 
+vcpkg_execute_required_process(
+  COMMAND ${CMAKE_COMMAND} -E copy_directory boost ${CURRENT_PACKAGES_DIR}/include/boost
+  WORKING_DIRECTORY ${SOURCE_PATH}
+  LOGNAME install-headers-${TARGET_TRIPLET})
+
 if(NOT VCPKG_CMAKE_SYSTEM_NAME)
   set(B2 ${SOURCE_PATH}/b2.exe)
   set(BOOTSTRAP ${SOURCE_PATH}/bootstrap.bat)
@@ -51,7 +56,7 @@ if(NOT EXISTS ${B2})
   vcpkg_execute_required_process(
     COMMAND ${BOOTSTRAP}
     WORKING_DIRECTORY ${SOURCE_PATH}
-    LOGNAME b2)
+    LOGNAME b2-${TARGET_TRIPLET})
 endif()
 
 vcpkg_configure_cmake(
