@@ -17,7 +17,7 @@ Advantages over the default vcpkg boost port are:
 Disadvantages over the default vcpkg boost port are (patches welcome):
 
 - Disables the `mpi` and `graph_parallel` components to reduce build times.
-- Disables the `log` and `wave` components because they cannot be built using a C++20 toolchain.
+- Disables the `log` and `wave` components because they lack C++20 support (fixed in 1.73.0).
 - Disables the `python` component beacuse it is unclear which version to support.
 - Only supports 64-bit triplets for Windows and Linux.
 - Components cannot be built separately.
