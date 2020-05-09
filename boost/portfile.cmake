@@ -1,14 +1,12 @@
 # Parse boost version.
-file(READ ${CMAKE_CURRENT_LIST_DIR}/CONTROL CONTROL)
-string(REGEX MATCH "Version: ([0-9\.]+)" _ ${CONTROL})
-set(BOOST_VERSION ${CMAKE_MATCH_1})
+set(BOOST_VERSION 1.73.0)
 
 string(REPLACE "." "_" BOOST_VERSION_NAME ${BOOST_VERSION})
 
 vcpkg_download_distfile(ARCHIVE
   URLS "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.7z"
   FILENAME "boost_${BOOST_VERSION_NAME}.7z"
-  SHA512 96ce928d490a84d76ef54b0f90780d23eeff4b1d79d7a00e4bee51e791b0f8e65eecc5578c86f49c2f791fb670826c114304d40ce097537431bf23ba587c2cae
+  SHA512 e8e0d0687ac62d67e9c44df7334e0d4c283613c77ed8bdb04873d36807261afd5130c7bbeefd5dfbaf715e4b04e6094ddd726288e171c047fd32d3342dc1b9aa
 )
 
 vcpkg_extract_source_archive_ex(

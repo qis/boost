@@ -1,5 +1,5 @@
 # Set boost version.
-set(BOOST_VERSION 1.72.0)
+set(BOOST_VERSION 1.73.0)
 
 # Set vcpkg root directory.
 find_program(VCPKG NAMES vcpkg)
