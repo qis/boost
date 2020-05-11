@@ -16,8 +16,10 @@ The package boost provides CMake targets:
     # graph                    : Boost::graph
     # headers                  : Boost::headers
     # iostreams                : Boost::iostreams
+    # json                     : Boost::json
     # locale                   : Boost::locale
     # math                     : Boost::math
+    # nowide                   : Boost::nowide
     # program_options          : Boost::program_options
     # random                   : Boost::random
     # regex                    : Boost::regex

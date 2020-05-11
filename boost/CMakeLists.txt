@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(boost LANGUAGES C CXX)
+project(boost LANGUAGES C CXX ASM_MASM)
 
 # Create a b2 project config based on CMake toolchain settings.
 set(config "${CMAKE_CURRENT_BINARY_DIR}/config.jam")
@@ -164,9 +164,9 @@ if(WITH_ZSTD)
     endif()
   else()
     if(CMAKE_BUILD_TYPE STREQUAL Debug)
-      set(ZSTD_NAME zstd_staticd)
+      set(ZSTD_NAME zstd)
     else()
-      set(ZSTD_NAME zstd_static)
+      set(ZSTD_NAME zstd)
     endif()
   endif()
   find_library(ZSTD_LIBRARY NAMES ${ZSTD_NAME})
@@ -215,10 +215,8 @@ add_custom_target(boost ALL ${B2}
   --cmakedir=${CMAKE_INSTALL_PREFIX}/share/boost
   --build-dir=${CMAKE_CURRENT_BINARY_DIR}/build
   --without-graph_parallel
-  --without-log
   --without-mpi
   --without-python
-  --without-wave
   --includedir=${INCLUDE_DIRECTORY}
   architecture=x86 address-model=64
   variant=${variant} threading=multi

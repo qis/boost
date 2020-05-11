@@ -14,6 +14,17 @@ vcpkg_extract_source_archive_ex(
   ARCHIVE ${ARCHIVE}
   REF "${BOOST_VERSION}")
 
+vcpkg_from_github(
+  OUT_SOURCE_PATH SOURCE_PATH_JSON
+  REPO CPPAlliance/json
+  REF e02029379e41bff8453237d90c131f32e5e58255
+  SHA512 e358cf423784f40ec03f12e61bcb51c93c98e4d2a7c8f6b6ba60eca8c85a06c9c865d45cec21b1a223094c083adc2a842ccc02ce1ab72f5733fba4297a52ab31
+  HEAD_REF master)
+
+if(NOT EXISTS ${SOURCE_PATH}/libs/json)
+  file(COPY ${SOURCE_PATH_JSON}/ DESTINATION ${SOURCE_PATH}/libs/json)
+endif()
+
 set(WITH_BZIP2 OFF)
 if(bzip2 IN_LIST FEATURES)
   set(WITH_BZIP2 ON)
@@ -111,8 +122,7 @@ set(BOOST_CONFIG_FILE "${CURRENT_PACKAGES_DIR}/share/boost/BoostConfig.cmake")
 file(WRITE  "${BOOST_CONFIG_FILE}" "# Configuration\n")
 file(APPEND "${BOOST_CONFIG_FILE}" "set(Boost_USE_STATIC_LIBS ${BOOST_STATIC_LIBS})\n")
 file(APPEND "${BOOST_CONFIG_FILE}" "set(Boost_USE_STATIC_RUNTIME ${BOOST_STATIC_RUNTIME})\n")
-file(APPEND "${BOOST_CONFIG_FILE}" "set(Boost_USE_MULTITHREADED \"\")\n")
-file(APPEND "${BOOST_CONFIG_FILE}" "set(Boost_USE_RELEASE_LIBS \"\")\n\n")
+file(APPEND "${BOOST_CONFIG_FILE}" "set(Boost_USE_MULTITHREADED ON)\n")
 file(APPEND "${BOOST_CONFIG_FILE}" "${BOOST_CONFIG}")
 
 # Move version file.
