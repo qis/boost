@@ -12,7 +12,8 @@ vcpkg_download_distfile(ARCHIVE
 vcpkg_extract_source_archive_ex(
   OUT_SOURCE_PATH SOURCE_PATH
   ARCHIVE ${ARCHIVE}
-  REF "${BOOST_VERSION}")
+  REF "${BOOST_VERSION}"
+  PATCHES 000-clang-win.patch)
 
 vcpkg_from_github(
   OUT_SOURCE_PATH SOURCE_PATH_JSON
