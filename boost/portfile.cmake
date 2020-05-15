@@ -154,4 +154,8 @@ endif()
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/share)
 
-configure_file(${CMAKE_CURRENT_LIST_DIR}/usage.in ${CURRENT_PACKAGES_DIR}/share/boost/usage LF)
+configure_file(${CMAKE_CURRENT_LIST_DIR}/vcpkg-cmake-wrapper.cmake.in
+  ${CURRENT_PACKAGES_DIR}/share/boost/vcpkg-cmake-wrapper.cmake LF @ONLY)
+
+configure_file(${CMAKE_CURRENT_LIST_DIR}/usage.in
+  ${CURRENT_PACKAGES_DIR}/share/boost/usage LF @ONLY)
