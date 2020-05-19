@@ -26,7 +26,7 @@ The package boost provides CMake targets:
     # serialization            : Boost::serialization
     # stacktrace               : Boost::stacktrace
     # system                   : Boost::system
-    # test                     : Boost::test
     # thread                   : Boost::thread
     # timer                    : Boost::timer
     # type_erasure             : Boost::type_erasure
+    # unit_test_framework      : Boost::unit_test_framework
