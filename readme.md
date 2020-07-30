@@ -33,25 +33,25 @@ Install [vcpkg](https://github.com/microsoft/vcpkg) following the official docum
 Clone this repository.
 
 ```cmd
-git clone git@github.com:qis/boost C:/Workspace/ports
+git clone git@github.com:qis/boost C:/Workspace/boost
 ```
 
 Generate empty ports for all boost components.
 
 ```cmd
-cmake -DVCPKG_ROOT=C:/Workspace/vcpkg -P C:/Workspace/ports/create.cmake
+cmake -DVCPKG_ROOT=C:/Workspace/vcpkg -P C:/Workspace/boost/create.cmake
 ```
 
 Install boost using the ports overlay in `cmd.exe`.
 
 ```cmd
-vcpkg install --overlay-ports=C:/Workspace/ports boost
+vcpkg install --overlay-ports=C:/Workspace/boost boost
 ```
 
 Install boost using the ports overlay in `wsl.exe`.
 
 ```cmd
-vcpkg install --overlay-ports=/opt/ports boost
+vcpkg install --overlay-ports=/opt/boost boost
 ```
 
 [boost]: https://www.boost.org/
