@@ -30,28 +30,21 @@ Disadvantages over the default vcpkg boost port are (patches welcome):
 Install [vcpkg](https://github.com/microsoft/vcpkg) following the official documentation.
 
 ## Usage
-Clone this repository.
+Clone this repository and generate ports.
 
 ```cmd
-git clone git@github.com:qis/boost C:/Workspace/boost
+cd C:/Workspace || cd /opt
+git clone git@github.com:qis/boost boost
+cmake -P boost/create.cmake
+cmake -E remove boost/.gitignore boost/create.cmake boost/readme.md
+cmake -E remove_directory boost/.git
 ```
 
-Generate empty ports for all boost components.
+Install boost using the ports overlay.
 
 ```cmd
-cmake -DVCPKG_ROOT=C:/Workspace/vcpkg -P C:/Workspace/boost/create.cmake
-```
-
-Install boost using the ports overlay in `cmd.exe`.
-
-```cmd
-vcpkg install --overlay-ports=C:/Workspace/boost boost
-```
-
-Install boost using the ports overlay in `wsl.exe`.
-
-```cmd
-vcpkg install --overlay-ports=/opt/boost boost
+cd C:/Workspace || cd /opt
+vcpkg install --overlay-ports=boost boost
 ```
 
 [boost]: https://www.boost.org/
