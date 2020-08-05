@@ -66,18 +66,23 @@ vcpkg_execute_required_process(
 
 if(NOT VCPKG_CMAKE_SYSTEM_NAME)
   set(B2 ${SOURCE_PATH}/b2.exe)
-  set(BOOTSTRAP ${SOURCE_PATH}/bootstrap.bat)
 else()
   set(B2 ${SOURCE_PATH}/b2)
-  set(BOOTSTRAP ${SOURCE_PATH}/bootstrap.sh)
 endif()
 
 if(NOT EXISTS ${B2})
   message(STATUS "Building b2...")
-  vcpkg_execute_required_process(
-    COMMAND ${BOOTSTRAP}
-    WORKING_DIRECTORY ${SOURCE_PATH}
-    LOGNAME b2-${TARGET_TRIPLET})
+  if(NOT VCPKG_CMAKE_SYSTEM_NAME)
+    vcpkg_execute_required_process(
+      COMMAND ${SOURCE_PATH}/bootstrap.bat
+      WORKING_DIRECTORY ${SOURCE_PATH}
+      LOGNAME b2-${TARGET_TRIPLET})
+  else()
+    vcpkg_execute_required_process(
+      COMMAND ${SOURCE_PATH}/bootstrap.sh --with-toolset=gcc
+      WORKING_DIRECTORY ${SOURCE_PATH}
+      LOGNAME b2-${TARGET_TRIPLET})
+  endif()
 endif()
 
 vcpkg_configure_cmake(
