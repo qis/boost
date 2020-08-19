@@ -36,15 +36,13 @@ Clone this repository and generate ports.
 cd C:/Workspace || cd /opt
 git clone git@github.com:qis/boost boost
 cmake -P boost/create.cmake
-cmake -E remove boost/.gitignore boost/create.cmake boost/readme.md
-cmake -E remove_directory boost/.git
 ```
 
 Install boost using the ports overlay.
 
 ```cmd
 cd C:/Workspace || cd /opt
-vcpkg install --overlay-ports=boost boost
+vcpkg install --overlay-ports=boost/ports boost
 ```
 
 [boost]: https://www.boost.org/

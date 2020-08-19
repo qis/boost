@@ -14,11 +14,14 @@ if(NOT VCPKG_ROOT)
   endif()
 endif()
 
+# Set boost ports directory.
+set(BOOST_PORTS_DIR ${CMAKE_CURRENT_LIST_DIR}/ports)
+
 # Remove ports created for old version.
-file(GLOB BOOST_PORTS_OLD ${CMAKE_CURRENT_LIST_DIR}/boost-*)
+file(GLOB BOOST_PORTS_OLD ${BOOST_PORTS_DIR}/boost-*)
 foreach(PORT_OLD ${BOOST_PORTS_OLD})
   get_filename_component(PORT ${PORT_OLD} NAME)
-  file(REMOVE_RECURSE ${CMAKE_CURRENT_LIST_DIR}/${PORT})
+  file(REMOVE_RECURSE ${BOOST_PORTS_DIR}/${PORT})
 endforeach()
 
 # Create ports for all boost subprojects.
@@ -28,12 +31,12 @@ foreach(PORT_SRC ${BOOST_PORTS})
   get_filename_component(PORT ${PORT_SRC} NAME)
   string(REGEX REPLACE "^boost-" "" NAME ${PORT})
   string(REPLACE "-" " " NAME ${NAME})
-  file(MAKE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/${PORT})
-  file(WRITE  ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Source: ${PORT}\n")
-  file(APPEND ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Version: ${BOOST_VERSION}\n")
-  file(APPEND ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Homepage: https://boost.org\n")
-  file(APPEND ${CMAKE_CURRENT_LIST_DIR}/${PORT}/CONTROL "Description: Boost ${NAME} module\n")
-  file(WRITE  ${CMAKE_CURRENT_LIST_DIR}/${PORT}/portfile.cmake "set(VCPKG_POLICY_EMPTY_PACKAGE enabled)\n")
+  file(MAKE_DIRECTORY ${BOOST_PORTS_DIR}/${PORT})
+  file(WRITE  ${BOOST_PORTS_DIR}/${PORT}/CONTROL "Source: ${PORT}\n")
+  file(APPEND ${BOOST_PORTS_DIR}/${PORT}/CONTROL "Version: ${BOOST_VERSION}\n")
+  file(APPEND ${BOOST_PORTS_DIR}/${PORT}/CONTROL "Homepage: https://boost.org\n")
+  file(APPEND ${BOOST_PORTS_DIR}/${PORT}/CONTROL "Description: Boost ${NAME} module\n")
+  file(WRITE  ${BOOST_PORTS_DIR}/${PORT}/portfile.cmake "set(VCPKG_POLICY_EMPTY_PACKAGE enabled)\n")
   if(BOOST_BUILD_DEPENDS STREQUAL "")
     set(BOOST_BUILD_DEPENDS "${PORT}")
   else()
@@ -42,7 +45,7 @@ foreach(PORT_SRC ${BOOST_PORTS})
 endforeach()
 
 # Create CONTROL file.
-file(WRITE ${CMAKE_CURRENT_LIST_DIR}/boost/CONTROL "\
+file(WRITE ${BOOST_PORTS_DIR}/boost/CONTROL "\
 Source: boost
 Version: ${BOOST_VERSION}
 Homepage: https://boost.org
@@ -78,9 +81,9 @@ if(VCPKG)
 endif()
 
 if(CMAKE_CURRENT_LIST_DIR MATCHES " ")
-  string(APPEND REPORT_COMMAND " --overlay-ports=\"${CMAKE_CURRENT_LIST_DIR}\" boost")
+  string(APPEND REPORT_COMMAND " --overlay-ports=\"${BOOST_PORTS_DIR}\" boost")
 else()
-  string(APPEND REPORT_COMMAND " --overlay-ports=${CMAKE_CURRENT_LIST_DIR} boost")
+  string(APPEND REPORT_COMMAND " --overlay-ports=${BOOST_PORTS_DIR} boost")
 endif()
 
 message("Success. Install the boost port using vcpkg overlays.\n${REPORT_COMMAND}")
