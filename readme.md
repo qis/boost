@@ -13,6 +13,12 @@ Advantages over the default vcpkg boost port are:
 - Generates `b2` configs that support MSVC, GCC and Clang.
 - Respects the global `CMAKE_CXX_STANDARD` setting.
 
+This port also includes libraries that are not yet part of the boost project.
+
+- [CPPAlliance/json](https://github.com/CPPAlliance/json)
+- [CPPAlliance/url](https://github.com/CPPAlliance/url)
+- [pdimov/describe](https://github.com/pdimov/describe)
+
 ## Disadvantages
 Disadvantages over the default vcpkg boost port are (patches welcome):
 
