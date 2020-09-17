@@ -1,6 +1,6 @@
 The package boost provides CMake targets:
 
-    find_package(Boost @BOOST_VERSION@ REQUIRED COMPONENTS <component> [...])
+    find_package(Boost REQUIRED COMPONENTS <component> [...])
     target_link_libraries(main PRIVATE Boost::<component> [...])
 
     # atomic                   : Boost::atomic
