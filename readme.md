@@ -24,6 +24,8 @@ Disadvantages over the default vcpkg boost port are (patches welcome):
 
 - Disables the `mpi` and `graph_parallel` components to reduce build times.
 - Disables the `python` component beacuse it is unclear which version to support.
+- Does not build `libiconv` support because of the license.
+- Does not build `icu` support because it requires MSYS2.
 - Only supports 64-bit triplets for Windows and Linux.
 - Components cannot be built separately.
 

@@ -18,6 +18,7 @@ The package boost provides CMake targets:
     # iostreams                : Boost::iostreams
     # json                     : Boost::json
     # locale                   : Boost::locale
+    # log                      : Boost::log
     # math                     : Boost::math
     # nowide                   : Boost::nowide
     # program_options          : Boost::program_options
@@ -30,3 +31,5 @@ The package boost provides CMake targets:
     # timer                    : Boost::timer
     # type_erasure             : Boost::type_erasure
     # unit_test_framework      : Boost::unit_test_framework
+    # url                      : Boost::url
+    # wave                     : Boost::wave

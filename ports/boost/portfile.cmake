@@ -1,19 +1,18 @@
 # Parse boost version.
-set(BOOST_VERSION 1.73.0)
+set(BOOST_VERSION 1.74.0)
 
 string(REPLACE "." "_" BOOST_VERSION_NAME ${BOOST_VERSION})
 
 vcpkg_download_distfile(ARCHIVE
   URLS "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.7z"
   FILENAME "boost_${BOOST_VERSION_NAME}.7z"
-  SHA512 e8e0d0687ac62d67e9c44df7334e0d4c283613c77ed8bdb04873d36807261afd5130c7bbeefd5dfbaf715e4b04e6094ddd726288e171c047fd32d3342dc1b9aa
+  SHA512 a2c3524235479f8a56dba154114962df50293d87304a8943f3c8755408f2ca380c90aff6fa1ef0aeefb927046db7b8e5dba5c7b19f493ee6799ad74f423d402e
 )
 
 vcpkg_extract_source_archive_ex(
   OUT_SOURCE_PATH SOURCE_PATH
   ARCHIVE ${ARCHIVE}
-  REF "${BOOST_VERSION}"
-  PATCHES 000-clang-win.patch)
+  REF "${BOOST_VERSION}")
 
 vcpkg_from_github(
   OUT_SOURCE_PATH SOURCE_PATH_JSON
