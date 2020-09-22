@@ -25,6 +25,12 @@ The package boost provides CMake targets:
     # random                   : Boost::random
     # regex                    : Boost::regex
     # serialization            : Boost::serialization
+    # stacktrace_noop          : Boost::stacktrace_noop
+    # stacktrace_basic         : Boost::stacktrace_basic
+    # stacktrace_backtrace     : Boost::stacktrace_backtrace
+    # stacktrace_addr2line     : Boost::stacktrace_addr2line
+    # stacktrace_windbg        : Boost::stacktrace_windbg
+    # stacktrace_windbg_cached : Boost::stacktrace_windbg_cached
     # system                   : Boost::system
     # thread                   : Boost::thread
     # timer                    : Boost::timer
