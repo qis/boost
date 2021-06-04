@@ -36,5 +36,4 @@ The package boost provides CMake targets:
     # timer                    : Boost::timer
     # type_erasure             : Boost::type_erasure
     # unit_test_framework      : Boost::unit_test_framework
-    # url                      : Boost::url
     # wave                     : Boost::wave
