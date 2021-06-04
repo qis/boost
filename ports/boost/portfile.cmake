@@ -1,5 +1,5 @@
 # Parse boost version.
-set(BOOST_VERSION 1.74.0)
+set(BOOST_VERSION 1.76.0)
 
 string(REPLACE "." "_" BOOST_VERSION_NAME ${BOOST_VERSION})
 
